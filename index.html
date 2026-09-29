@@ -314,45 +314,51 @@ footer .copy{color:var(--mut);font-size:.78rem}
 <button class="to-top" id="toTop">↑</button>
 
 <script>
-  /* ============ MODAL LOGIC ============ */
-document.querySelectorAll('[data-more]').forEach(function(btn){
-  btn.addEventListener('click',function(){
-    const key=btn.getAttribute('data-more');
-    const m=document.getElementById('m-'+key);
-    if(m){m.classList.add('show');document.body.style.overflow='hidden';}
-  });
-});
+/* ============ MODAL LOGIC v3 ============ */
+document.addEventListener('click', function(e){
+  var t = e.target;
+  var overlay = t.closest ? t.closest('.modal-overlay') : null;
 
-document.querySelectorAll('.modal-overlay').forEach(function(modal){
-  modal.addEventListener('click',function(e){
-    if(e.target===modal){modal.classList.remove('show');document.body.style.overflow='';}
-  });
-});
-
-document.querySelectorAll('[data-close]').forEach(function(el){
-  el.addEventListener('click',function(e){
-    if(el.getAttribute('href')==='#routers'){
-      e.preventDefault();
-      document.querySelectorAll('.modal-overlay.show').forEach(function(m){
-        m.classList.remove('show');
-      });
-      var rt=document.getElementById('m-routers');
-      if(rt){rt.classList.add('show');document.body.style.overflow='hidden';}
-      return;
+  var btn = t.closest ? t.closest('[data-more]') : null;
+  if(btn){
+    e.preventDefault();
+    var key = btn.getAttribute('data-more');
+    var m = document.getElementById('m-' + key);
+    if(m){
+      document.querySelectorAll('.modal-overlay.show').forEach(function(x){x.classList.remove('show');});
+      m.classList.add('show');
+      document.body.style.overflow = 'hidden';
     }
-    document.querySelectorAll('.modal-overlay.show').forEach(function(m){
-      m.classList.remove('show');
-    });
-    document.body.style.overflow='';
-  });
+    return;
+  }
+
+  var rtLink = t.closest ? t.closest('a[href="#routers"]') : null;
+  if(rtLink){
+    e.preventDefault();
+    document.querySelectorAll('.modal-overlay.show').forEach(function(x){x.classList.remove('show');});
+    var rt = document.getElementById('m-routers');
+    if(rt){rt.classList.add('show');document.body.style.overflow='hidden';}
+    return;
+  }
+
+  var closer = t.closest ? t.closest('[data-close]') : null;
+  if(closer){
+    if(closer.tagName === 'A'){ e.preventDefault(); }
+    document.querySelectorAll('.modal-overlay.show').forEach(function(x){x.classList.remove('show');});
+    document.body.style.overflow = '';
+    return;
+  }
+
+  if(overlay && t === overlay){
+    overlay.classList.remove('show');
+    document.body.style.overflow = '';
+  }
 });
 
-document.addEventListener('keydown',function(e){
-  if(e.key==='Escape'){
-    document.querySelectorAll('.modal-overlay.show').forEach(function(m){
-      m.classList.remove('show');
-    });
-    document.body.style.overflow='';
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape'){
+    document.querySelectorAll('.modal-overlay.show').forEach(function(x){x.classList.remove('show');});
+    document.body.style.overflow = '';
   }
 });
 
