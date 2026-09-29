@@ -314,6 +314,50 @@ footer .copy{color:var(--mut);font-size:.78rem}
 <button class="to-top" id="toTop">↑</button>
 
 <script>
+  /* ============ MODAL LOGIC ============ */
+document.querySelectorAll('[data-more]').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    const key=btn.getAttribute('data-more');
+    const m=document.getElementById('m-'+key);
+    if(m){m.classList.add('show');document.body.style.overflow='hidden';}
+  });
+});
+
+document.querySelectorAll('.modal-overlay').forEach(function(modal){
+  modal.addEventListener('click',function(e){
+    if(e.target===modal){modal.classList.remove('show');document.body.style.overflow='';}
+  });
+});
+
+document.querySelectorAll('[data-close]').forEach(function(el){
+  el.addEventListener('click',function(){
+    document.querySelectorAll('.modal-overlay.show').forEach(function(m){
+      m.classList.remove('show');
+    });
+    document.body.style.overflow='';
+  });
+});
+
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){
+    document.querySelectorAll('.modal-overlay.show').forEach(function(m){
+      m.classList.remove('show');
+    });
+    document.body.style.overflow='';
+  }
+});
+
+/* ============ ROUTERS MODAL ============ */
+document.querySelectorAll('a[href="#routers"]').forEach(function(link){
+  link.addEventListener('click',function(e){
+    e.preventDefault();
+    document.querySelectorAll('.modal-overlay.show').forEach(function(m){
+      m.classList.remove('show');
+    });
+    const rt=document.getElementById('m-routers');
+    if(rt){rt.classList.add('show');document.body.style.overflow='hidden';}
+  });
+});
   const TG_TOKEN='8892520457:AAHx8cszd0cEezw4ZGRZl19ruyvgcGr2AW4';
 const TG_CHAT='1166660946';
 
@@ -710,6 +754,210 @@ if(toTop){
       </div>
     </div>
     <a href="#ariza" class="btn" data-close>Ulanish</a>
+  </div>
+</div>
+  <!-- MODAL ROUTERS -->
+<div class="modal-overlay" id="m-routers">
+  <div class="modal-box modal-wide">
+    <button class="modal-x" data-close>✕</button>
+    <div class="modal-head">
+      <div class="m-tag">Wi-Fi Routerlar</div>
+      <h3>Router narxlari</h3>
+      <div style="font-size:.88rem;color:var(--soft);margin-top:8px">Naqd yoki bo'lib to'lash</div>
+    </div>
+
+    <div class="rt-grid-modal">
+
+      <div class="rt-item-modal">
+        <div class="rt-head-m">
+          <div>
+            <div class="rt-name-m">ONU</div>
+            <div class="rt-cat-m">Optik terminal</div>
+          </div>
+          <div class="rt-price-m">125 000 <small>so'm</small></div>
+        </div>
+        <div class="rt-specs-m">
+          <div class="rt-spec-m"><span class="k">Turi</span><span class="v">Optik terminal (ONT)</span></div>
+          <div class="rt-spec-m"><span class="k">Port</span><span class="v">1× SC/APC (GPON)</span></div>
+        </div>
+        <div class="rt-plans-m">
+          <div class="rt-plan-m"><div class="tm">3 oy</div><div class="pm">45 833 <small>so'm/oy</small></div></div>
+          <div class="rt-plan-m"><div class="tm">6 oy</div><div class="pm">23 958 <small>so'm/oy</small></div></div>
+          <div class="rt-plan-m"><div class="tm">12 oy</div><div class="pm">13 542 <small>so'm/oy</small></div></div>
+        </div>
+      </div>
+
+      <div class="rt-item-modal">
+        <div class="rt-head-m">
+          <div>
+            <div class="rt-name-m">TP-Link XC220-G5</div>
+            <div class="rt-cat-m">Wi-Fi 5 · AC1200</div>
+          </div>
+          <div class="rt-price-m">278 489 <small>so'm</small></div>
+        </div>
+        <div class="rt-specs-m">
+          <div class="rt-spec-m"><span class="k">Tezlik</span><span class="v">867 + 300 Mbit/s</span></div>
+          <div class="rt-spec-m"><span class="k">Chastota</span><span class="v">2.4 + 5 GHz</span></div>
+          <div class="rt-spec-m"><span class="k">Antenna</span><span class="v">2 ta</span></div>
+          <div class="rt-spec-m"><span class="k">Portlar</span><span class="v">4× LAN + GPON</span></div>
+        </div>
+        <div class="rt-plans-m">
+          <div class="rt-plan-m"><div class="tm">3 oy</div><div class="pm">102 112 <small>so'm/oy</small></div></div>
+          <div class="rt-plan-m"><div class="tm">6 oy</div><div class="pm">53 377 <small>so'm/oy</small></div></div>
+          <div class="rt-plan-m"><div class="tm">12 oy</div><div class="pm">30 170 <small>so'm/oy</small></div></div>
+        </div>
+      </div>
+
+      <div class="rt-item-modal">
+        <div class="rt-head-m">
+          <div>
+            <div class="rt-name-m">TP-Link Archer C6 🔥</div>
+            <div class="rt-cat-m">Wi-Fi 5 · AC1200 · Ommabop</div>
+          </div>
+          <div class="rt-price-m">289 582 <small>so'm</small></div>
+        </div>
+        <div class="rt-specs-m">
+          <div class="rt-spec-m"><span class="k">Tezlik</span><span class="v">867 + 300 Mbit/s</span></div>
+          <div class="rt-spec-m"><span class="k">Chastota</span><span class="v">2.4 + 5 GHz</span></div>
+          <div class="rt-spec-m"><span class="k">Antenna</span><span class="v">4 ta</span></div>
+          <div class="rt-spec-m"><span class="k">Texnologiya</span><span class="v">MU-MIMO, Beamforming</span></div>
+        </div>
+        <div class="rt-plans-m">
+          <div class="rt-plan-m"><div class="tm">3 oy</div><div class="pm">106 180 <small>so'm/oy</small></div></div>
+          <div class="rt-plan-m"><div class="tm">6 oy</div><div class="pm">55 503 <small>so'm/oy</small></div></div>
+          <div class="rt-plan-m"><div class="tm">12 oy</div><div class="pm">31 371 <small>so'm/oy</small></div></div>
+        </div>
+      </div>
+
+      <div class="rt-item-modal">
+        <div class="rt-head-m">
+          <div>
+            <div class="rt-name-m">TP-Link Archer C24</div>
+            <div class="rt-cat-m">Wi-Fi 4 · AC750 · Byudjet</div>
+          </div>
+          <div class="rt-price-m">298 013 <small>so'm</small></div>
+        </div>
+        <div class="rt-specs-m">
+          <div class="rt-spec-m"><span class="k">Tezlik</span><span class="v">433 + 300 Mbit/s</span></div>
+          <div class="rt-spec-m"><span class="k">Chastota</span><span class="v">2.4 + 5 GHz</span></div>
+          <div class="rt-spec-m"><span class="k">Antenna</span><span class="v">4 ta</span></div>
+          <div class="rt-spec-m"><span class="k">Portlar</span><span class="v">5× (10/100)</span></div>
+        </div>
+        <div class="rt-plans-m">
+          <div class="rt-plan-m"><div class="tm">3 oy</div><div class="pm">109 272 <small>so'm/oy</small></div></div>
+          <div class="rt-plan-m"><div class="tm">6 oy</div><div class="pm">57 119 <small>so'm/oy</small></div></div>
+          <div class="rt-plan-m"><div class="tm">12 oy</div><div class="pm">32 285 <small>so'm/oy</small></div></div>
+        </div>
+      </div>
+
+      <div class="rt-item-modal">
+        <div class="rt-head-m">
+          <div>
+            <div class="rt-name-m">TP-Link Archer C64</div>
+            <div class="rt-cat-m">Wi-Fi 5 · AC1200</div>
+          </div>
+          <div class="rt-price-m">352 560 <small>so'm</small></div>
+        </div>
+        <div class="rt-specs-m">
+          <div class="rt-spec-m"><span class="k">Tezlik</span><span class="v">867 + 400 Mbit/s</span></div>
+          <div class="rt-spec-m"><span class="k">Chastota</span><span class="v">2.4 + 5 GHz</span></div>
+          <div class="rt-spec-m"><span class="k">Antenna</span><span class="v">4 ta</span></div>
+          <div class="rt-spec-m"><span class="k">Texnologiya</span><span class="v">MU-MIMO, Beamforming</span></div>
+        </div>
+        <div class="rt-plans-m">
+          <div class="rt-plan-m"><div class="tm">3 oy</div><div class="pm">129 272 <small>so'm/oy</small></div></div>
+          <div class="rt-plan-m"><div class="tm">6 oy</div><div class="pm">67 574 <small>so'm/oy</small></div></div>
+          <div class="rt-plan-m"><div class="tm">12 oy</div><div class="pm">38 194 <small>so'm/oy</small></div></div>
+        </div>
+      </div>
+
+      <div class="rt-item-modal">
+        <div class="rt-head-m">
+          <div>
+            <div class="rt-name-m">TP-Link XC220-G3</div>
+            <div class="rt-cat-m">Wi-Fi 5 · AC1200 · GPON</div>
+          </div>
+          <div class="rt-price-m">379 759 <small>so'm</small></div>
+        </div>
+        <div class="rt-specs-m">
+          <div class="rt-spec-m"><span class="k">Tezlik</span><span class="v">867 + 300 Mbit/s</span></div>
+          <div class="rt-spec-m"><span class="k">Chastota</span><span class="v">2.4 + 5 GHz</span></div>
+          <div class="rt-spec-m"><span class="k">Antenna</span><span class="v">2 ta</span></div>
+          <div class="rt-spec-m"><span class="k">Portlar</span><span class="v">SC/APC + 2× LAN</span></div>
+        </div>
+        <div class="rt-plans-m">
+          <div class="rt-plan-m"><div class="tm">3 oy</div><div class="pm">139 245 <small>so'm/oy</small></div></div>
+          <div class="rt-plan-m"><div class="tm">6 oy</div><div class="pm">72 787 <small>so'm/oy</small></div></div>
+          <div class="rt-plan-m"><div class="tm">12 oy</div><div class="pm">41 141 <small>so'm/oy</small></div></div>
+        </div>
+      </div>
+
+      <div class="rt-item-modal">
+        <div class="rt-head-m">
+          <div>
+            <div class="rt-name-m">TP-Link Archer AX53</div>
+            <div class="rt-cat-m">Wi-Fi 6 · AX3000</div>
+          </div>
+          <div class="rt-price-m">463 330 <small>so'm</small></div>
+        </div>
+        <div class="rt-specs-m">
+          <div class="rt-spec-m"><span class="k">Tezlik</span><span class="v">2402 + 574 Mbit/s</span></div>
+          <div class="rt-spec-m"><span class="k">Chastota</span><span class="v">2.4 + 5 GHz (160 МГц)</span></div>
+          <div class="rt-spec-m"><span class="k">Antenna</span><span class="v">4 ta</span></div>
+          <div class="rt-spec-m"><span class="k">Texnologiya</span><span class="v">OFDMA, MU-MIMO, EasyMesh</span></div>
+        </div>
+        <div class="rt-plans-m">
+          <div class="rt-plan-m"><div class="tm">3 oy</div><div class="pm">169 888 <small>so'm/oy</small></div></div>
+          <div class="rt-plan-m"><div class="tm">6 oy</div><div class="pm">88 805 <small>so'm/oy</small></div></div>
+          <div class="rt-plan-m"><div class="tm">12 oy</div><div class="pm">50 194 <small>so'm/oy</small></div></div>
+        </div>
+      </div>
+
+      <div class="rt-item-modal">
+        <div class="rt-head-m">
+          <div>
+            <div class="rt-name-m">Deco X10 AX1500</div>
+            <div class="rt-cat-m">Mesh Wi-Fi 6 · 2-pack</div>
+          </div>
+          <div class="rt-price-m">752 913 <small>so'm</small></div>
+        </div>
+        <div class="rt-specs-m">
+          <div class="rt-spec-m"><span class="k">Tezlik</span><span class="v">1201 + 300 Mbit/s</span></div>
+          <div class="rt-spec-m"><span class="k">Qoplama</span><span class="v">~300 m²</span></div>
+          <div class="rt-spec-m"><span class="k">Antenna</span><span class="v">Ichki</span></div>
+          <div class="rt-spec-m"><span class="k">Portlar</span><span class="v">2× Gigabit</span></div>
+        </div>
+        <div class="rt-plans-m">
+          <div class="rt-plan-m"><div class="tm">3 oy</div><div class="pm">276 068 <small>so'm/oy</small></div></div>
+          <div class="rt-plan-m"><div class="tm">6 oy</div><div class="pm">144 308 <small>so'm/oy</small></div></div>
+          <div class="rt-plan-m"><div class="tm">12 oy</div><div class="pm">81 566 <small>so'm/oy</small></div></div>
+        </div>
+      </div>
+
+      <div class="rt-item-modal">
+        <div class="rt-head-m">
+          <div>
+            <div class="rt-name-m">Deco X20 AX1800</div>
+            <div class="rt-cat-m">Mesh Wi-Fi 6 · 2-pack · Premium</div>
+          </div>
+          <div class="rt-price-m">992 852 <small>so'm</small></div>
+        </div>
+        <div class="rt-specs-m">
+          <div class="rt-spec-m"><span class="k">Tezlik</span><span class="v">1201 + 574 Mbit/s</span></div>
+          <div class="rt-spec-m"><span class="k">Qoplama</span><span class="v">~350 m²</span></div>
+          <div class="rt-spec-m"><span class="k">Antenna</span><span class="v">2 ichki</span></div>
+          <div class="rt-spec-m"><span class="k">Portlar</span><span class="v">2× Gigabit</span></div>
+        </div>
+        <div class="rt-plans-m">
+          <div class="rt-plan-m"><div class="tm">3 oy</div><div class="pm">364 046 <small>so'm/oy</small></div></div>
+          <div class="rt-plan-m"><div class="tm">6 oy</div><div class="pm">190 297 <small>so'm/oy</small></div></div>
+          <div class="rt-plan-m"><div class="tm">12 oy</div><div class="pm">107 559 <small>so'm/oy</small></div></div>
+        </div>
+      </div>
+
+    </div>
+
+    <a href="#ariza" class="btn" data-close>Ulanish uchun ariza</a>
   </div>
 </div>
 </body>
